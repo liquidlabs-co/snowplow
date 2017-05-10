@@ -35,10 +35,10 @@ object Dependencies {
     val dynamodb        = "1.11.98"
     // Scala
     val json4sJackson   = "3.2.11"
-    val commonEnrich    = "0.23.0"
+    val commonEnrich    = "0.24.1-SNAPSHOT"
     val scalding        = "0.15.0"
     val scalaz7         = "7.0.0"
-    val igluClient      = "0.4.0"
+    val igluClient      = "0.4.0-SNAPSHOT"
 
     // Scala (test only)
     val specs2          = "1.14" // Downgrade to prevent issues in job tests. WAS: "2.3.11"

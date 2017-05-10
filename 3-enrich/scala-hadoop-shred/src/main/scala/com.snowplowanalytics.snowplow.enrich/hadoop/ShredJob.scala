@@ -44,7 +44,8 @@ import common.utils.shredder.Shredder
 import iglu.client.{
   ProcessingMessageNel,
   JsonSchemaPair,
-  Resolver
+  Resolver,
+  SchemaKey
 }
 import iglu.client.validation.ProcessingMessageMethods._
 
@@ -95,6 +96,15 @@ object ShredJob {
         val errorWriter = new StringWriter
         nf.printStackTrace(new PrintWriter(errorWriter))
         Validation.failure[String, EventComponents](s"Unexpected error processing events: $errorWriter").toProcessingMessageNel
+    }
+  }
+
+  def loadAndShred2(line: String)(implicit resolver: Resolver): (Iterable[Option[(SchemaKey, JsonNode)]], Iterable[Option[JsonNode]]) = {
+    val enrichedEvent = EnrichedEventLoader.toEnrichedEvent(line)
+    enrichedEvent match {
+      case Success(nel@_) =>
+        Shredder.shred2(nel)
+      case _ => (None, None)
     }
   }
 
