@@ -120,37 +120,6 @@ object Shredder {
     allWithMetadata
   }
 
-  def shred2(event: EnrichedEvent)(implicit resolver: Resolver): (Iterable[Option[JsonSchemaPair]], Iterable[Option[JsonNode]]) = {
-    // Define what we know so far of the type hierarchy.
-    val partialHierarchy = makePartialHierarchy(
-      event.event_id, event.collector_tstamp)
-
-    // Get our unstructured event and Lists of contexts and derived_contexts, all Option-boxed
-    val ue = extractAndValidateJsonOneLevel("ue_properties", UePropertiesSchema, Option(event.unstruct_event))
-
-    def extractContexts(json: String, field: String): Iterable[JsonNode] = {
-      extractAndValidateJsonOneLevel(field, ContextsSchema, Option(json))
-    }
-
-    val c  = extractContexts(event.contexts, "context")
-    val dc = extractContexts(event.derived_contexts, "derived_contexts")
-
-    val all = ue ++ c ++ dc
-
-    val allValidated = all.map(node => {
-      (node, node.validateAndIdentifySchema(false))
-    })
-    val allGoods = allValidated.map {
-      case (node, Success(good)) => attachMetadata(good, partialHierarchy).some
-      case (node, Failure(_)) => None
-    }
-    val allBads = allValidated.map {
-      case (node, Success(_)) => None
-      case (node, Failure(bad)) => node.some
-    }
-    (allGoods, allBads)
-  }
-
   /**
    * Extract unstruct event out of [[EnrichedEvent]] and validate against it's schema
    *
@@ -359,26 +328,6 @@ object Shredder {
       j <- extractJson(field, i)
       v <- j.verifySchemaAndValidate(schemaCriterion, true)
     } yield v
-
-  private[shredder] def extractAndValidateJsonOneLevel(field: String, schemaCriterion: SchemaCriterion, instance: Option[String])(implicit resolver: Resolver):
-    Iterable[JsonNode] = {
-    if (instance.isEmpty) {
-      List()
-    } else {
-      try {
-        val data = Mapper.readTree(instance.get).get("data")
-        if (data.isArray) {
-          data.asInstanceOf[ArrayNode]
-        } else {
-          List(data)
-        }
-      } catch {
-        case e: Throwable =>
-          log.error("Exception parsing json", e)
-          null
-      }
-    }
-  }
 
   /**
    * Wrapper around JsonUtils' extractJson which

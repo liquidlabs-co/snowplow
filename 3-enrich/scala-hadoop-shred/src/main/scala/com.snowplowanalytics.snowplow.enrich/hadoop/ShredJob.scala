@@ -99,15 +99,6 @@ object ShredJob {
     }
   }
 
-  def loadAndShred2(line: String)(implicit resolver: Resolver): (Iterable[Option[(SchemaKey, JsonNode)]], Iterable[Option[JsonNode]]) = {
-    val enrichedEvent = EnrichedEventLoader.toEnrichedEvent(line)
-    enrichedEvent match {
-      case Success(nel@_) =>
-        Shredder.shred2(nel)
-      case _ => (None, None)
-    }
-  }
-
   /**
    * Projects our Failures into a Some; Successes
    * become a None will be silently dropped by
