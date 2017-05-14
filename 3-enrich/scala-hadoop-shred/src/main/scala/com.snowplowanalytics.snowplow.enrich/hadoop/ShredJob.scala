@@ -44,8 +44,7 @@ import common.utils.shredder.Shredder
 import iglu.client.{
   ProcessingMessageNel,
   JsonSchemaPair,
-  Resolver,
-  SchemaKey
+  Resolver
 }
 import iglu.client.validation.ProcessingMessageMethods._
 
