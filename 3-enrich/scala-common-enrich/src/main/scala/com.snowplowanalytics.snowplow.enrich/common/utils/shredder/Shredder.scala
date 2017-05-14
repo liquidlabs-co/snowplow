@@ -19,17 +19,7 @@ package shredder
 
 // Jackson
 import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.node.{
-  ArrayNode,
-  ObjectNode
-}
-import com.fasterxml.jackson.databind.{
-  ObjectMapper,
-  JsonNode
-}
-
-// Logging
-import org.slf4j.LoggerFactory
+import com.fasterxml.jackson.databind.node.ObjectNode
 
 // Scala
 import scala.collection.JavaConversions._
@@ -73,10 +63,6 @@ object Shredder {
 
   // Self-describing schema for a contexts
   private val ContextsSchema = SchemaCriterion("com.snowplowanalytics.snowplow", "contexts", "jsonschema", 1, 0)
-
-  private lazy val Mapper = new ObjectMapper
-
-  lazy val log = LoggerFactory.getLogger(getClass())
 
   /**
    * Shred the EnrichedEvent's two fields which
