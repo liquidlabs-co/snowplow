@@ -46,3 +46,6 @@
 [submodule "4-storage/kinesis-s3"]
 	path = 4-storage/kinesis-s3
 	url = https://github.com/snowplow/kinesis-s3.git
+[submodule "4-storage/kinesis-redshift-sink"]
+	path = 4-storage/kinesis-redshift-sink
+	url = git@github.com:jramos/kinesis-redshift-sink.git

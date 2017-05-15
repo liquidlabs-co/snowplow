@@ -35,7 +35,7 @@ object Dependencies {
     val dynamodb        = "1.11.98"
     // Scala
     val json4sJackson   = "3.2.11"
-    val commonEnrich    = "0.23.0"
+    val commonEnrich    = "0.24.1-SNAPSHOT"
     val scalding        = "0.15.0"
     val scalaz7         = "7.0.0"
     val igluClient      = "0.4.0"
@@ -47,26 +47,26 @@ object Dependencies {
 
   object Libraries {
     // Java
-    val hadoopCommon     = "org.apache.hadoop"          %  "hadoop-common"                % V.hadoop       % "provided"
-    val hadoopClientCore = "org.apache.hadoop"          %  "hadoop-mapreduce-client-core" % V.hadoop       % "provided"
-    val cascadingCore    = "cascading"                  %  "cascading-core"               % V.cascading
-    val cascadingLocal   = "cascading"                  %  "cascading-local"              % V.cascading
-    val cascadingHadoop  = "cascading"                  %  "cascading-hadoop2-mr1"        % V.cascading
-    val jsonValidator    = "com.github.fge"             %  "json-schema-validator"   % V.jsonValidator
-    val yodaTime         = "joda-time"                  %  "joda-time"               % V.yodaTime
-    val yodaConvert      = "org.joda"                   %  "joda-convert"            % V.yodaConvert
-    val dynamodb         = "com.amazonaws"              %  "aws-java-sdk-dynamodb"   % V.dynamodb
+    val hadoopCommon     = "org.apache.hadoop"          %  "hadoop-common"                 % V.hadoop       % "provided"
+    val hadoopClientCore = "org.apache.hadoop"          %  "hadoop-mapreduce-client-core"  % V.hadoop       % "provided"
+    val cascadingCore    = "cascading"                  %  "cascading-core"                % V.cascading
+    val cascadingLocal   = "cascading"                  %  "cascading-local"               % V.cascading
+    val cascadingHadoop  = "cascading"                  %  "cascading-hadoop2-mr1"         % V.cascading
+    val jsonValidator    = "com.github.fge"             %  "json-schema-validator"         % V.jsonValidator
+    val yodaTime         = "joda-time"                  %  "joda-time"                     % V.yodaTime
+    val yodaConvert      = "org.joda"                   %  "joda-convert"                  % V.yodaConvert
+    val dynamodb         = "com.amazonaws"              %  "aws-java-sdk-dynamodb"         % V.dynamodb
     // Scala
-    val json4sJackson    = "org.json4s"                 %% "json4s-jackson"          % V.json4sJackson
-    val commonEnrich     = "com.snowplowanalytics"      %  "snowplow-common-enrich"  % V.commonEnrich
-    val scaldingCore     = "com.twitter"                %% "scalding-core"           % V.scalding exclude( "cascading", "cascading-local" ) exclude( "cascading", "cascading-hadoop" ) exclude( "cascading", "cascading-hadoop2-mr1" )
-    val scaldingArgs     = "com.twitter"                %% "scalding-args"           % V.scalding exclude( "cascading", "cascading-local" ) exclude( "cascading", "cascading-hadoop" ) exclude( "cascading", "cascading-hadoop2-mr1" )
-    val scalaz7          = "org.scalaz"                 %% "scalaz-core"             % V.scalaz7
-    val igluClient       = "com.snowplowanalytics"      %% "iglu-scala-client"       % V.igluClient
+    val json4sJackson    = "org.json4s"                 %% "json4s-jackson"                % V.json4sJackson
+    val commonEnrich     = "com.snowplowanalytics"      %  "snowplow-common-enrich"        % V.commonEnrich
+    val scaldingCore     = "com.twitter"                %% "scalding-core"                 % V.scalding exclude( "cascading", "cascading-local" ) exclude( "cascading", "cascading-hadoop" ) exclude( "cascading", "cascading-hadoop2-mr1" )
+    val scaldingArgs     = "com.twitter"                %% "scalding-args"                 % V.scalding exclude( "cascading", "cascading-local" ) exclude( "cascading", "cascading-hadoop" ) exclude( "cascading", "cascading-hadoop2-mr1" )
+    val scalaz7          = "org.scalaz"                 %% "scalaz-core"                   % V.scalaz7
+    val igluClient       = "com.snowplowanalytics"      %% "iglu-scala-client"             % V.igluClient
     // Scala (test only)
-    val specs2           = "org.specs2"                 %% "specs2"                  % V.specs2          % "test"
-    val scalazSpecs2     = "org.typelevel"              %% "scalaz-specs2"           % V.scalazSpecs2    % "test"
+    val specs2           = "org.specs2"                 %% "specs2"                        % V.specs2       % "test"
+    val scalazSpecs2     = "org.typelevel"              %% "scalaz-specs2"                 % V.scalazSpecs2 % "test"
     // Hadoop (test only)
-    val hadoopClientCommon = "org.apache.hadoop"        % "hadoop-mapreduce-client-common" % V.hadoop    % "test"
+    val hadoopClientCommon = "org.apache.hadoop"        % "hadoop-mapreduce-client-common" % V.hadoop       % "test"
   }
 }
